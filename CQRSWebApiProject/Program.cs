@@ -1,5 +1,17 @@
 using MediatR;
 using System.Reflection;
+using AutoMapper;
+using CQRSWebApiProject.Business.MapProfiles;
+using CQRSWebApiProject.DAL.Concrete.EntityFramework.Context;
+using Microsoft.EntityFrameworkCore;
+using System;
+using CQRSWebApiProject.Business.Validators;
+using FluentValidation.AspNetCore;
+using CQRSWebApiProject.Business.Validators.General;
+using CQRSWebApiProject.Business.DTO.Request;
+using FluentValidation;
+using Kanbersky.Customer.Business.Extensions;
+using CQRSWebApiProject.DAL.Concrete.EntityFramework.GenericRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +22,50 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
+
+
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add(new ResponseValidator());
+});
+
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(opt =>
+    {
+        opt.SuppressModelStateInvalidFilter = true;
+    })
+    .AddFluentValidation();
+
+builder.Services.AddDbContext<EFContext>(opt => opt.UseInMemoryDatabase("InMem"));
+
+
+#region service aboneliði yaklaþýmý
+// clean code yaklaþýmý aþaðýdaki yapýyý Extensions klasörü altýna aldým. bu sayede sadace aþaðýdaki iki satýr kod ile baya iþlem halletmiþ olduk...
+//Fluentvalidation kütüphanesi ile gelen istekleri kolay ve kod kalabalýðý olmadan validation yapmamýza yarayan kütüphanemiz var
+//apimizi bu servislere de abone ediyoruz ve daha fazla servis iþini de orada halledebiliyoruz.
+//Core ve Customer servislerindeki startup.cs içerisindeki karýþýklýðý bu yapý ile parçalayýp daha temiz bir hale getirebiliriz....
+//builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+//builder.Services.AddSingleton<IValidator<CreateCustomerRequest>, CreateCustomerRequestValidator>();
+//builder.Services.AddSingleton<IValidator<UpdateCustomerRequest>, UpdateCustomerRequestValidator>();
+builder.Services.RegisterHandlers();
+builder.Services.RegisterValidators();
+#endregion
+
+
+var mappingConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new AutoMappingProfiels());
+});
+IMapper mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
 var app = builder.Build();
+
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
