@@ -13,7 +13,7 @@ namespace CQRSWebApiProject.Business.Queries
         public int Id { get; set; } 
         public GetCustomerByIDQuery(int id)
         {
-            id = id;
+            this.Id = id;
         }
     }
 }

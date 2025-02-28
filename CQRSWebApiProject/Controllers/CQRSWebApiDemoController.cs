@@ -35,5 +35,22 @@ namespace CQRSWebApiProject.Controllers
             var result = await mediator.Send(new CreateCustomerCommand(createCustomerRequest));
             return Ok(result);
         }
+
+
+        /// <summary>
+        /// Get Customer Given By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returns the Given By Id Customer</returns>
+        /// <response code="200">Returns the Given By Id Customer</response>
+        /// <response code="404">If the item is null</response> 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetCustomerById(int id)
+        {
+            var result = await mediator.Send(new GetCustomerByIDQuery(id));
+            return Ok(result);
+        }
     }
 }

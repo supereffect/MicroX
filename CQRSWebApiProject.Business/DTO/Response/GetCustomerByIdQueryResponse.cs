@@ -1,6 +1,8 @@
-﻿namespace CQRSWebApiProject.Business.DTO.Response
+﻿using CQRSWebApiProject.Entity.Concrete;
+
+namespace CQRSWebApiProject.Business.DTO.Response
 {
-    public class GetCustomerByIdQueryResponse
+    public class GetCustomerByIdQueryResponse : Customer
     {
     }
 }
