@@ -10,37 +10,30 @@ namespace CQRSWebApiProject.Controllers
     [ApiController]
     public class CQRSWebApiProjectController : ControllerBase
     {
-        #region fields
-
-        private readonly IMediator _mediator;
-
-        #endregion
-
-        #region ctor
-
+        private readonly IMediator mediator;
         /// <summary>
         /// ctor
         /// </summary>
         /// <param name="mediator"></param>
         public CQRSWebApiProjectController(IMediator mediator)
         {
-            _mediator = mediator;
+            this.mediator = mediator;
         }
 
-        #endregion
-
-        #region methods
+        /// <summary>
+        /// Create an Customer
+        /// </summary>
+        /// <param name="createCustomerRequest"></param>
+        /// <returns>A newly created customer</returns>
+        /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response> 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerRequest createCustomerRequest)
         {
-            var result = await _mediator.Send(new CreateCustomerCommand(createCustomerRequest));
+            var result = await mediator.Send(new CreateCustomerCommand(createCustomerRequest));
             return Ok(result);
         }
-
-
-        #endregion
     }
 }
