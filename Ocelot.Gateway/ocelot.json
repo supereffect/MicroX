@@ -17,7 +17,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",s
+          "Host": "localhost",
           "Port": 7025
         }
       ],
