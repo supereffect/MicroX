@@ -1,0 +1,43 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/OcelotSecondAPI/get",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7270
+        }
+      ],
+      "UpstreamPathTemplate": "/api/services",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/CQRSWebApiProject/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7025
+        }
+      ],
+      "UpstreamPathTemplate": "/api/cqrs/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+     {
+      "DownstreamPathTemplate": "/api/CQRSWebApiProject",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7025
+        }
+      ],
+      "UpstreamPathTemplate": "/api/cqrs",
+      "UpstreamHttpMethod": ["Get", "Post"]
+    },
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7282"
+  }
+}

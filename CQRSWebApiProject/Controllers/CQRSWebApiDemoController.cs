@@ -1,5 +1,6 @@
 using CQRSWebApiProject.Business.Commands;
 using CQRSWebApiProject.Business.DTO.Request;
+using CQRSWebApiProject.Business.DTO.Response;
 using CQRSWebApiProject.Business.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -52,5 +53,15 @@ namespace CQRSWebApiProject.Controllers
             var result = await mediator.Send(new GetCustomerByIDQuery(id));
             return Ok(result);
         }
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetAllCustomers()
+        {
+            var result = await mediator.Send(new GetAllCustomersQuery());
+            return Ok(result);
+        }
+
+
     }
 }

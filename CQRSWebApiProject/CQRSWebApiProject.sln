@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRSWebApiProject", "CQRSWe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRSWebApiProject.Business", "..\CQRSWebApiProject.Business\CQRSWebApiProject.Business.csproj", "{94526331-88F5-4B54-98F1-31BFACC980B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRSWebApiProject.Entity", "..\Entity\CQRSWebApiProject.Entity.csproj", "{50CE1059-2037-4D1C-A41C-955614806511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRSWebApiProject.Entity", "..\Entity\CQRSWebApiProject.Entity.csproj", "{50CE1059-2037-4D1C-A41C-955614806511}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRSWebApiProject.DAL", "..\CQRSWebApiProject.DAL\CQRSWebApiProject.DAL.csproj", "{8E8A33E6-15B1-4263-9F40-7492AFCF021F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRSWebApiProject.DAL", "..\CQRSWebApiProject.DAL\CQRSWebApiProject.DAL.csproj", "{8E8A33E6-15B1-4263-9F40-7492AFCF021F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ocelot.Gateway", "..\Ocelot.Gateway\Ocelot.Gateway.csproj", "{3416BC8E-7F7F-4AB0-AC37-093D6752C618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ocelot.SecondApi", "..\Ocelot.SecondApi\Ocelot.SecondApi.csproj", "{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{8E8A33E6-15B1-4263-9F40-7492AFCF021F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E8A33E6-15B1-4263-9F40-7492AFCF021F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E8A33E6-15B1-4263-9F40-7492AFCF021F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3416BC8E-7F7F-4AB0-AC37-093D6752C618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3416BC8E-7F7F-4AB0-AC37-093D6752C618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3416BC8E-7F7F-4AB0-AC37-093D6752C618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3416BC8E-7F7F-4AB0-AC37-093D6752C618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
