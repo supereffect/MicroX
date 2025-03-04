@@ -11,9 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRSWebApiProject.Entity", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRSWebApiProject.DAL", "..\CQRSWebApiProject.DAL\CQRSWebApiProject.DAL.csproj", "{8E8A33E6-15B1-4263-9F40-7492AFCF021F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ocelot.Gateway", "..\Ocelot.Gateway\Ocelot.Gateway.csproj", "{3416BC8E-7F7F-4AB0-AC37-093D6752C618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ocelot.Gateway", "..\Ocelot.Gateway\Ocelot.Gateway.csproj", "{3416BC8E-7F7F-4AB0-AC37-093D6752C618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ocelot.SecondApi", "..\Ocelot.SecondApi\Ocelot.SecondApi.csproj", "{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ocelot.SecondApi", "..\Ocelot.SecondApi\Ocelot.SecondApi.csproj", "{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Messaging", "..\Common.Messaging\Common.Messaging.csproj", "{CD347244-4BC0-46E9-B660-F662B6D8B5BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bokapi", "..\bokapi\bokapi.csproj", "{9C2FFA9B-709C-407B-821C-7F36F767DF66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AE7952E-02B4-4E46-AEDE-EDDC15CF3751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD347244-4BC0-46E9-B660-F662B6D8B5BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD347244-4BC0-46E9-B660-F662B6D8B5BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD347244-4BC0-46E9-B660-F662B6D8B5BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD347244-4BC0-46E9-B660-F662B6D8B5BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C2FFA9B-709C-407B-821C-7F36F767DF66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C2FFA9B-709C-407B-821C-7F36F767DF66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C2FFA9B-709C-407B-821C-7F36F767DF66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C2FFA9B-709C-407B-821C-7F36F767DF66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

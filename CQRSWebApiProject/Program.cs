@@ -12,6 +12,9 @@ using CQRSWebApiProject.Business.DTO.Request;
 using FluentValidation;
 using Kanbersky.Customer.Business.Extensions;
 using CQRSWebApiProject.DAL.Concrete.EntityFramework.GenericRepository;
+using Common.Messaging.Providers;
+using Common.Messaging;
+using Common.Messaging.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +41,12 @@ builder.Services.AddControllers()
     .AddFluentValidation();
 
 builder.Services.AddDbContext<EFContext>(opt => opt.UseInMemoryDatabase("InMem"));
+
+//Aþaðýdaki 2 þekilde de ekleme yapýlabilir. 
+builder.Services.AddSingleton(
+    MessageQueueFactory.CreateProvider());// 
+//builder.Services.AddSingleton<IMessageQueueProvider>(sp =>
+//    MessageQueueProviderFactory.CreateProvider(sp));// 
 
 
 #region service aboneliði yaklaþýmý

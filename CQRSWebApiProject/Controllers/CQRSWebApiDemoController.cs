@@ -1,3 +1,4 @@
+using Common.Messaging.Abstract;
 using CQRSWebApiProject.Business.Commands;
 using CQRSWebApiProject.Business.DTO.Request;
 using CQRSWebApiProject.Business.DTO.Response;
@@ -12,13 +13,15 @@ namespace CQRSWebApiProject.Controllers
     public class CQRSWebApiProjectController : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly IMessageQueueProvider messageQueueProvider;
         /// <summary>
         /// ctor
         /// </summary>
         /// <param name="mediator"></param>
-        public CQRSWebApiProjectController(IMediator mediator)
+        public CQRSWebApiProjectController(IMediator mediator, IMessageQueueProvider messageQueueProvider)
         {
             this.mediator = mediator;
+            this.messageQueueProvider = messageQueueProvider;
         }
 
         /// <summary>
@@ -33,6 +36,7 @@ namespace CQRSWebApiProject.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerRequest createCustomerRequest)
         {
+            await messageQueueProvider.PublishAsync("my-queue", "message");
             var result = await mediator.Send(new CreateCustomerCommand(createCustomerRequest));
             return Ok(result);
         }
