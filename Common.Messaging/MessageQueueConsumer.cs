@@ -8,7 +8,7 @@ namespace Ocelot.SecondApi.AsyncDataServices
     public abstract class MessageQueueConsumer : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
-
+        protected string channel;
         public MessageQueueConsumer(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
@@ -19,7 +19,7 @@ namespace Ocelot.SecondApi.AsyncDataServices
             using var scope = _serviceProvider.CreateScope();
             var messageQueue = MessageQueueFactory.CreateProvider();
 
-            messageQueue.Consume<object>("my-queue", message =>
+            messageQueue.Consume<object>(channel, message =>
             {
                 Console.WriteLine($"Mesaj alındı: {JsonSerializer.Serialize(message)}");
                 HandleMessage(message);

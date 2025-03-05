@@ -15,6 +15,7 @@ using CQRSWebApiProject.DAL.Concrete.EntityFramework.GenericRepository;
 using Common.Messaging.Providers;
 using Common.Messaging;
 using Common.Messaging.Abstract;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +41,14 @@ builder.Services.AddControllers()
     })
     .AddFluentValidation();
 
-builder.Services.AddDbContext<EFContext>(opt => opt.UseInMemoryDatabase("InMem"));
+builder.Services.AddDbContext<WriteDbContext>(options =>
+    options.UseInMemoryDatabase("InMem"));
+
+builder.Services.AddDbContext<ReadDbContext>(options =>
+        options.UseInMemoryDatabase("InMem"));
+
+
+
 
 //Aþaðýdaki 2 þekilde de ekleme yapýlabilir. 
 builder.Services.AddSingleton(
