@@ -9,7 +9,8 @@ namespace Ocelot.SecondApi.AsyncDataServices
     {
         public MessageQueueListener(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            channel = "my-queue";
+            //channel = "my-queue";
+            channel = "test-topic";
         }
 
         protected override void HandleMessage<T>(T message)

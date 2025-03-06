@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Common.Messaging;
+using Common.Messaging.Abstract;
 using CQRSWebApiProject.Business.Commands;
 using CQRSWebApiProject.Business.DTO.Response;
 using CQRSWebApiProject.DAL.Concrete.EntityFramework.GenericRepository;
@@ -18,11 +19,12 @@ namespace CQRSWebApiProject.Business.Handlers
     {
         private readonly IGenericRepository<Entity.Concrete.Customer> repository;
         private readonly IMapper mapper;
-        
-        public CreateCustomerCommandHandler(IGenericRepository<Entity.Concrete.Customer> repository, IMapper mapper)
+        private readonly IMessageQueueProvider messageQueueProvider;
+        public CreateCustomerCommandHandler(IGenericRepository<Entity.Concrete.Customer> repository, IMapper mapper, IMessageQueueProvider messageQueueProvider)
         {
             this.repository = repository;
             this.mapper = mapper;
+            this.messageQueueProvider = messageQueueProvider;
         }
 
 
@@ -33,6 +35,8 @@ namespace CQRSWebApiProject.Business.Handlers
             var customer = mapper.Map<Entity.Concrete.Customer>(request.CreateCustomerRequest);
             var response = await repository.Add(customer);
             await repository.SaveChangesAsync();
+            await messageQueueProvider.PublishAsync("test-topic", request);
+
             return mapper.Map<CreateCustomerResponse>(response);
         }
     }

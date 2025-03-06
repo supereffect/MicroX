@@ -1,21 +1,14 @@
 using MediatR;
-using System.Reflection;
 using AutoMapper;
 using CQRSWebApiProject.Business.MapProfiles;
 using CQRSWebApiProject.DAL.Concrete.EntityFramework.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using CQRSWebApiProject.Business.Validators;
 using FluentValidation.AspNetCore;
 using CQRSWebApiProject.Business.Validators.General;
-using CQRSWebApiProject.Business.DTO.Request;
-using FluentValidation;
 using Kanbersky.Customer.Business.Extensions;
 using CQRSWebApiProject.DAL.Concrete.EntityFramework.GenericRepository;
-using Common.Messaging.Providers;
 using Common.Messaging;
-using Common.Messaging.Abstract;
-using Microsoft.Extensions.Configuration;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,13 +34,17 @@ builder.Services.AddControllers()
     })
     .AddFluentValidation();
 
-builder.Services.AddDbContext<WriteDbContext>(options =>
-    options.UseInMemoryDatabase("InMem"));
+//builder.Services.AddDbContext<WriteDbContext>(options =>
+//    options.UseInMemoryDatabase("InMem"));
 
-builder.Services.AddDbContext<ReadDbContext>(options =>
-        options.UseInMemoryDatabase("InMem"));
+//builder.Services.AddDbContext<ReadDbContext>(options =>
+//        options.UseInMemoryDatabase("InMem"));
 
+builder.Services.AddDbContext<ReadDbContext>(opt =>
+      opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
 
+builder.Services.AddDbContext<WriteDbContext>(opt =>
+      opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
 
 
 //Aþaðýdaki 2 þekilde de ekleme yapýlabilir. 

@@ -11,7 +11,7 @@ namespace Common.Messaging
         private static IMessageQueueProvider _instance;
         private static readonly object _lock = new();
 
-        
+
         public static IMessageQueueProvider CreateProvider()
         {
             return CreateProvider(GetConfiguration());
@@ -29,7 +29,7 @@ namespace Common.Messaging
                         _instance = providerType switch
                         {
                             RPCProvider.RabbitMQ => new RabbitMQProvider(GetHost(), GetPort()),
-                            RPCProvider.Kafka => new KafkaProvider(),
+                            RPCProvider.Kafka => new KafkaProvider(GetHost(), GetPort(), GetGroupId()),
                             RPCProvider.EgehanÇ => new EgehanProvider(),
                             _ => throw new Exception("Geçersiz RPC sağlayıcı!")
                         };
@@ -41,7 +41,8 @@ namespace Common.Messaging
 
         private static RPCProvider GetConfiguration()
         {
-            return RPCProvider.RabbitMQ;
+            //return RPCProvider.RabbitMQ;
+            return RPCProvider.Kafka;
         }
         private static string GetHost()
         {
@@ -49,7 +50,12 @@ namespace Common.Messaging
         }
         private static int GetPort()
         {
-            return 5672;
+            //return 5672; // RabbitMQ  
+            return 9092; // Kafka
+        }
+        private static string GetGroupId()
+        {
+            return "my-group"; // Kafka
         }
     }
 

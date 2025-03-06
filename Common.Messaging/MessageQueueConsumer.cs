@@ -25,7 +25,7 @@ namespace Ocelot.SecondApi.AsyncDataServices
                 HandleMessage(message);
             }, stoppingToken);
 
-            await Task.Delay(Timeout.Infinite, stoppingToken); // Sürekli dinlemeye devam et
+            await Task.Delay(Timeout.Infinite, stoppingToken);
         }
         protected abstract void HandleMessage<T>(T message);
     }
