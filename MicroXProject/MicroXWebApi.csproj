@@ -33,9 +33,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common.Messaging\Common.Messaging.csproj" />
-    <ProjectReference Include="..\CQRSWebApiProject.Business\CQRSWebApiProject.Business.csproj" />
-    <ProjectReference Include="..\CQRSWebApiProject.DAL\CQRSWebApiProject.DAL.csproj" />
-    <ProjectReference Include="..\Entity\CQRSWebApiProject.Entity.csproj" />
+    <ProjectReference Include="..\MicroXProject.Business\MicroXWebApi.Business.csproj" />
+    <ProjectReference Include="..\Entity\MicroXWebApi.Entity.csproj" />
+    <ProjectReference Include="..\MicroXProject.DAL\MicroXWebApi.DAL.csproj" />
   </ItemGroup>
 
 </Project>

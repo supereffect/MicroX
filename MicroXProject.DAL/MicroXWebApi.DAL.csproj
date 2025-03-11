@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entity\CQRSWebApiProject.Entity.csproj" />
+    <ProjectReference Include="..\Entity\MicroXWebApi.Entity.csproj" />
   </ItemGroup>
 
 </Project>
