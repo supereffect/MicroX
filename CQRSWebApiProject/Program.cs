@@ -9,6 +9,8 @@ using Kanbersky.Customer.Business.Extensions;
 using CQRSWebApiProject.DAL.Concrete.EntityFramework.GenericRepository;
 using Common.Messaging;
 using System;
+using CQRSWebApiProject.DAL.Concrete.Redis.Concrete;
+using CQRSWebApiProject.DAL.Concrete.Redis.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,7 +54,7 @@ builder.Services.AddSingleton(
     MessageQueueFactory.CreateProvider());// 
 //builder.Services.AddSingleton<IMessageQueueProvider>(sp =>
 //    MessageQueueProviderFactory.CreateProvider(sp));// 
-
+//builder.Services.AddSingleton<ICacheService, CacheService>();
 
 #region service aboneliði yaklaþýmý
 // clean code yaklaþýmý aþaðýdaki yapýyý Extensions klasörü altýna aldým. bu sayede sadace aþaðýdaki iki satýr kod ile baya iþlem halletmiþ olduk...
@@ -64,6 +66,7 @@ builder.Services.AddSingleton(
 //builder.Services.AddSingleton<IValidator<UpdateCustomerRequest>, UpdateCustomerRequestValidator>();
 builder.Services.RegisterHandlers();
 builder.Services.RegisterValidators();
+builder.Services.RedisConfiguration();
 #endregion
 
 
